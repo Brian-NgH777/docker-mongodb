@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+    mongo:
+        container_name: mongodb
+        image: mongo
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=${USERNAME}
+            - MONGO_INITDB_ROOT_PASSWORD=${PASSWORD}
+            # - MONGODB_USERNAME=test
+            # - MONGODB_PASSWORD=test123
+        volumes:
+            - ./data/db:/mongodb/data/db
+        ports:
+            - ${PORT}:${PORT}
+        networks:
+            - webnet
+        logging:
+            driver: 'json-file'
+            options:
+                max-size: '8m'
+                max-file: '10'
+        restart: always
+        # command: mongod --smallfiles --logpath=/dev/null # --quiet
+networks:
+    webnet:
+        name: webnet
+        driver: bridge
