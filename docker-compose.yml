@@ -11,7 +11,7 @@ services:
         volumes:
             - ./data/db:/mongodb/data/db
         ports:
-            - ${PORT}:${PORT}
+            - ${PORT}:27017
         networks:
             - webnet
         logging:
